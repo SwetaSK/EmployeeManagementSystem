@@ -38,3 +38,13 @@ Implements **CRUD operations**, **Login Authentication**, and **Role-Based Acces
 - Bootstrap 5
 - HTML, CSS
 
+----
+
+##  How to Run
+1. Clone or download the repository.
+2. Open `EmployeeManagementSystem.sln` in Visual Studio.
+3. Restore NuGet packages (if prompted).
+4. Open `/Database/Create_EmployeeDB.sql` in SQL Server Management Studio and execute it.
+5. Update the connection string in `Web.config` with your SQL Server name.
+6. Run the project (Ctrl + F5) — the login page will open.
+
