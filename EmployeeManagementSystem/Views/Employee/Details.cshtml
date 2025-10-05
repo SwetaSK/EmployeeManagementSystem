@@ -1,0 +1,23 @@
+﻿@model EmployeeManagementSystem.Models.EmployeeModel
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+<h2>Employee Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4>@(Model.FirstName + " " + Model.LastName)</h4>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Phone:</strong> @Model.Phone</p>
+        <p><strong>Department:</strong> @Model.Department</p>
+        <p><strong>Designation:</strong> @Model.Designation</p>
+        <p><strong>Salary:</strong> @(Model.Salary.HasValue ? Model.Salary.Value.ToString("C") : "-")</p>
+        <p><strong>Date of Joining:</strong> @(Model.DateOfJoining.HasValue ? Model.DateOfJoining.Value.ToString("yyyy-MM-dd") : "-")</p>
+        <p><strong>Active:</strong> @(Model.IsActive ? "Yes" : "No")</p>
+
+        <a class="btn btn-warning" href="@Url.Action("Edit","Employee", new { id = Model.Id })">Edit</a>
+        <a class="btn btn-secondary" href="@Url.Action("Index","Employee")">Back to List</a>
+    </div>
+   
+</div>

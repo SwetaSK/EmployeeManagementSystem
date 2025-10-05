@@ -1,0 +1,18 @@
+﻿@model EmployeeManagementSystem.Models.EmployeeModel
+@{
+    ViewBag.Title = "Delete Employee";
+}
+
+<h2>Delete Employee</h2>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete <strong>@(Model.FirstName + " " + Model.LastName)</strong>?
+</div>
+
+@using (Html.BeginForm("DeleteConfirmed", "Employee", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index","Employee")">Cancel</a>
+}

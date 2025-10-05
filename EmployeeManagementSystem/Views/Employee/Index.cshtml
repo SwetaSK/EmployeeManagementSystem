@@ -1,0 +1,78 @@
+﻿@model IEnumerable<EmployeeManagementSystem.Models.EmployeeModel>
+@{
+    ViewBag.Title = "Employees";
+}
+
+<div class="hero row">
+    <div class="col-md-8">
+        <h2>Employees</h2>
+    </div>
+    <div class="col-md-4 text-right">
+        <a class="btn btn-success" href="@Url.Action("Create","Employee")">+ Add Employee</a>
+    </div>
+</div>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Phone</th>
+            <th>Salary</th>
+            <th>DOJ</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+
+            <tr>
+                <td>@e.Id</td>
+                <td>@(e.FirstName + " " + e.LastName)</td>
+                <td>@e.Department</td>
+                <td>@e.Designation</td>
+                <td>@e.Phone</td>
+                <td>@(e.Salary.HasValue ? e.Salary.Value.ToString("C") : "-")</td>
+                <td>@(e.DateOfJoining.HasValue ? e.DateOfJoining.Value.ToString("yyyy-MM-dd") : "-")</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="@Url.Action("Details","Employee", new { id = e.Id })">Details</a>
+                    @*<a class="btn btn-sm btn-warning" href="@Url.Action("Edit","Employee", new { id = e.Id })">Edit</a>
+            <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","Employee", new { id = e.Id })">Delete</a>*@
+              
+                    @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = e.Id }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Delete", "Delete", new { id = e.Id }, new { @class = "btn btn-danger btn-sm" })
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary btn-sm" disabled title="Only Admins can edit">Edit</button>
+                        <button class="btn btn-secondary btn-sm" disabled title="Only Admins can delete">Delete</button>
+                    }
+               
+                </td>
+
+                @*<td>
+            <a class="btn btn-sm btn-primary" href="@Url.Action("Details","Employee", new { id = e.Id })">Details</a>
+
+            @if (Session["Role"] != null && Session["Role"].ToString() == "Admin")
+            {
+                <a class="btn btn-sm btn-warning" href="@Url.Action("Edit","Employee", new { id = e.Id })">Edit</a>
+                <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","Employee", new { id = e.Id })">Delete</a>
+            }
+        </td>*@
+
+            </tr>
+        }
+   
+    </tbody>
+
+</table>

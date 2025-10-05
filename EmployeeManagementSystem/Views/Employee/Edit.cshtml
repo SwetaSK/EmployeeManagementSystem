@@ -1,0 +1,73 @@
+﻿@model EmployeeManagementSystem.Models.EmployeeModel
+@{
+    ViewBag.Title = "Edit Employee";
+}
+<h2>Edit Employee</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="form-group col-md-6">
+            @Html.LabelFor(m => m.Phone)
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.Department)
+            @Html.TextBoxFor(m => m.Department, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.Designation)
+            @Html.TextBoxFor(m => m.Designation, new { @class = "form-control" })
+        </div>
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.Salary)
+            @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", type = "number", step = "0.01" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            @Html.LabelFor(m => m.DateOfJoining)
+            @Html.TextBoxFor(m => m.DateOfJoining, new { @class = "form-control", type = "date" })
+        </div>
+        <div class="form-group col-md-2 align-self-end">
+            <div class="form-check">
+                @Html.CheckBoxFor(m => m.IsActive, new { @class = "form-check-input" })
+                @Html.LabelFor(m => m.IsActive, new { @class = "form-check-label ml-2" })
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" href="@Url.Action("Index","Employee")">Cancel</a>
+}
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}
+
+
